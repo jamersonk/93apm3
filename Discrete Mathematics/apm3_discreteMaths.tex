@@ -1,0 +1,289 @@
+\documentclass[14pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{algpseudocode}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{color}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{titlesec}
+\usepackage{paralist}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{multirow}
+\titleformat{\section}[block]{\color{black}\Large\bfseries\filcenter}{}{1em}{}
+
+\geometry{
+    a4paper,
+    nomarginpar,
+    includeheadfoot,
+    total = {140mm, 257mm},
+    headheight = 1.2cm
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdfpagemode=FullScreen,
+    }
+
+    \theoremstyle{definition}
+    \newtheorem*{remark}{Remarks}
+    \newtheorem*{example}{Example}
+    \newtheorem*{discussion}{Discussion}
+    \newtheorem{definition}{Definition}[subsection]
+    \newtheorem{proposition}[definition]{Proposition}
+    \newtheorem{theorem}[definition]{Theorem}
+    \newtheorem{notation}[definition]{Notation}
+    \newtheorem{coro}[definition]{Corollary}
+    \newtheorem{lemma}[definition]{Lemma}
+    \newtheorem{axiom}[definition]{Axiom}
+    \newtheorem*{exercise}{Exercise}
+
+
+\newcommand{\impl}{\rightarrow}
+\newcommand{\eq}{\thicksim}
+\newcommand{\quotient}{A/\thicksim}
+\newcommand{\fun}[3]{#1\colon #2\rightarrow#3}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\restrict}{\upharpoonright}
+\newcommand{\xor}{\oplus}
+
+\title{Discrete Mathematics}
+\author{from 93APM3 Applied Mathematics 3}
+\date{AY25/26 Sem 2} % delete this line to display the current date
+
+%%% BEGIN DOCUMENT
+\begin{document}
+
+\maketitle
+
+This set of notes is based on the lectures as delivered in AY25/26 by Dr Li Zhongqiang, with reference to \textit{Discrete Mathematics and Its Applications} (Rosen, 2019).
+\newpage
+
+\tableofcontents
+
+\newpage
+
+
+%%% SETS
+\section{Sets}
+\subsection{Basic Set Notation}
+
+\begin{center}
+\begin{tabular}{  |p{3cm}| |p{8cm}| }
+\hline
+notation & definition\\
+\hline
+$\in$ 							& is an element of.\\
+$\notin$ 							& is not an element of.\\
+$A = \{x_1, x_2, ...\}$ 				& list of elements of $A$.\\
+$A= \{ x: x\in \mathbb{R}\}$			& rule by which elements of $A$ are determined.\\
+$A \subset B$						& $A$ is a subset of $B$.\\
+$A \subseteq B$					& $A$ is a proper subset of $B$. $A\subset B$, $A\neq B$.\\
+$U$								& Universal set of all elements of interest.\\
+$\emptyset$						& The empty set.\\
+$\overline{A}$ or $A^{\complement}$		& $\overline{A} = \{ x, x\in U, x\notin A \}$.\\
+$A\cup B$							& set of \textbf{all} the elements of $A$ and $B$.\\
+$A\cap B$							& set of the \textbf{common} elements of $A$ and $B$.\\
+\hline
+\end{tabular}
+\end{center}
+\par
+A disjointed set is the set of $A$ and $B$ such that
+\[A\cap B = \emptyset.\]
+\subsection{Algebra of Sets}
+\textbf{Commutative law:}		$A \cup B \equiv B\cup A$, $A \cap B \equiv B \cap A$\\
+\textbf{Idempotent law:}		$A \cup A = A$, $A \cap A = A$\\
+\textbf{Identity law:}			$A \cup \emptyset = A$, $A \cap U = A$\\
+\textbf{Complementary law:}	$A \cup \overline{A} = U$, $A \cap \overline{A} = \emptyset$\\
+\textbf{Associative law:}		$A \cup \left(B\cup C\right) = \left(A\cup B\right)\cup C$\\
+\textbf{Distributive law:}		$A \cup \left(B \cap C\right) = \left(A \cup B\right) \cap \left( A \cup C\right)$\\
+\textbf{De Morgen laws:}
+$
+\overline{A \cup B} = \overline{A} \cap \overline{B}, 
+\overline{A \cap B} = \overline{A} \cup \overline{B}
+$
+
+
+%%% LOGIC AND PROOFS
+\section{Logic and Proofs}
+\subsection{Propositional Logic}
+\begin{definition}
+The proposition $p$ is a statement which declares a fact, and which is immediately discernible as either true or false.
+\end{definition}
+\begin{remark}
+Compound propositions can be created through the application of logical operators on a proposition.
+\end{remark}
+\begin{definition}
+The \textit{negation} of $p$, $\tilde{p}$ is the statement "it is not the case that $p$".
+\end{definition}
+\begin{remark}
+$\tilde{p}$ can also be written $\overline{p}$ or $\neg{p}$
+\end{remark}
+\begin{definition}
+The \textit{conjunction} of $p$ and $q$, $p\land q$ is the statement "$p$ and $q$".
+\end{definition}
+\begin{definition}
+The \textit{disjunction} of $p$ and $q$, $p\lor q$ is the statement "$p$ or $q$".
+\end{definition}
+\begin{definition}
+The \textit{exclusive or} of $p$ and $q$, $p \xor q$ is the statement which is true when, and only when, either $p$ or $q$ is true, but not both.
+\end{definition}
+\begin{definition}
+The \textit{implication} $p \Rightarrow q$ is the statement "\textit{$p$ implies $q$}".
+\end{definition}
+\begin{remark}
+The statement $p \rightarrow r$ is the \textit{hypothesis}. $q$ is the conclusion. Remember that just because $q$ is true, this does \textbf{not} mean that $p$ is true. This relation is not reversible.
+\end{remark}
+\begin{definition}
+The \textit{converse} of the statement $p \Rightarrow q$ is the statement $q \Rightarrow q$.
+\end{definition}
+\begin{definition}
+The \textit{contrapositive} of $p\Rightarrow q$ is $\neg{p} \Rightarrow \neg{q}$.
+\end{definition}
+\begin{definition}
+The \textit{bi-conditional} statement $p \iff q$ is the proposition "$p$ if and only if $q$". 
+\end{definition}
+\begin{remark}
+The bi-conditional is the compound proposition of $p \Rightarrow q$ and $q \Rightarrow p$. A true result is returned only when both $p$ and $q$ have the same truth table values, and is false otherwise. It has the same truth table values as $\left(p \Rightarrow q\right)\land \left(q\Rightarrow q\right).$
+\end{remark}
+
+\subsection{Propositional Equivalences}
+\begin{definition}
+The \textit{contradiction} is a statement which is always false.
+\end{definition}
+\begin{remark}
+For example, the statement $s \equiv p\land \tilde{p}$ is always false. It is thus a contradiction.
+\end{remark}
+\begin{definition}
+The \textit{tautology} is a statement which is always true.
+\end{definition}
+\begin{remark}
+For example, the statement $t \equiv p\lor \tilde{p}$ is always true. It is thus a tautology.
+\end{remark}
+\begin{definition}
+The compound propositions $p$ and $q$ are called \textit{logically equivalent} if $p \iff q$ is a tautology (always true). This is also denoted with $p \equiv q$.
+\end{definition}
+The table below illustrates a number of such logical equivalences.
+\begin{center}
+\begin{tabular}{  |p{5cm}| |p{5cm}| }
+\hline
+name & equivalence\\
+\hline
+identity laws				& $p \land t \equiv p$\\ 
+							&$p \lor s \equiv p$\\
+\hline
+domination laws				& $p \lor t \equiv t$\\ 
+							&$p \land s \equiv s$\\
+\hline
+idempotent laws				& $p \lor p \equiv p$\\ 
+							&$p \land p \equiv p$\\
+\hline
+double negation law			& $\neg{\left(\tilde{p}\right)}\equiv p$\\
+\hline
+associative law				& $\left(p \lor q\right)\lor r \equiv p \lor \left(q \lor r\right)$\\
+							& $\left(p \land q\right)\land r \equiv p\land \left(q \land r\right)$\\
+\hline
+distributive law			& $p\lor\left(p\land r\right)\equiv \left(p\lor q\right)\land \left(p\lor r\right)$\\ 
+							& $p\land\left(p\lor r\right)\equiv \left(p\land q\right)\lor \left(p \land q\right)$\\
+\hline
+De Morgen's laws			& $\overline{\left(p\lor q\right)}\equiv\tilde{p}\land\tilde{q}$\\
+							& $\overline{\left(p\land q\right)}\equiv\tilde{p}\lor\tilde{q}$\\
+\hline
+absorption laws				& $p \land \left(p\lor q\right)\equiv p$\\
+							& $p \lor \left(p \land q\right)\equiv p$\\
+\hline
+complementary(negation) law	& $p \lor \tilde{p} \equiv t$\\ &$p\land\tilde{p}\equiv s$\\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Predicates and Quantifiers}
+\begin{definition}
+The \textit{Propositional Function} $P(x)$ refers to a statement which becomes a proposition when a value is assigned to its \textit{variable(s)} $a, b, ... z$. The \textit{predicate} is the condition to be fulfilled.
+\end{definition}
+\begin{exercise}
+Take $x > 3$. This propositional function only becomes a proposition when we give $x$ a value, such that we can determine the function's truth table.
+\end{exercise}
+
+\subsection{Proofs, Methods for Proofs}
+\subsubsection{Terminology}
+\begin{center}
+\begin{tabular}{  |p{3cm}| |p{10cm}| }
+\hline
+word		&	definition\\
+\hline
+theorem		&	a statement that can be shown to be true (also: facts, results).\\
+proposition	&	a less important theorem.\\
+proof		&	demonstration that a theorem is true.\\
+axioms		&	statements we assume to be true (also: postulates).\\
+lemma		&	a less important theorem useful in the proof of other results.\\
+corollary	&	theorem that can be directly established from a theorem that has been proved.\\
+conjecture	&	a statement which is proposed to be a true statement.\\
+\hline
+\end{tabular}
+\end{center}
+
+%%% PROOFS
+\subsection{Methods of Proof}
+\subsubsection{Direct Proof}
+The \textit{direct proof} of the proposition $p\rightarrow q$ is one which begins with the assumption that $p$ is true, before the usage of a series of axioms, definitions, and proved theories, to show that $q$ is also true. Direct proofs are the most straightforward of the proofs.
+\begin{definition}
+An integer $n$ is even if there exists an integer $k$ such that $n=2k$, and $n$ is odd if there exists an integer $k$ such that $n=2k +1$. Two integers are said to have the same \textit{parity} when both are even or both are odd; they have the opposite parity when one is even and the other is odd.
+\end{definition}
+\begin{exercise}
+If $n$ is odd, prove that $n^2$ is odd.
+\begin{align}
+n	&=2k+1\text{, }k\in \mathbb{Z} \\
+n^2	&=\left(2k+1\right)^2\\
+	&=2\left(2k^2+2k\right)+1]
+\end{align}
+therefore, by definition, $n^2$ is odd.
+\end{exercise}
+
+\subsubsection{Indirect Proof}
+An \textit{indirect proof} is one which does not start with the premise and end with the conclusion.
+
+\paragraph{Proof by contraposition:}We utilise the fact that the implication $p\rightarrow q$ is equivalent to its contrapositive $\tilde{p}\rightarrow \tilde{q}$. Taking $\tilde{p}$ as the premise, we use axioms, definitions and proven theorems to show that $\tilde{q}$ must follow. This indirectly proves that $p\implies q$.
+
+\paragraph{Vacuous proof:}Given that $p$ is false, then it follows that $p \rightarrow q$ must be true. Therefore, if we can prove that $p$ is false, we can then establish the \textit{vacuous proof}.
+
+\paragraph{Trivial proof:}Given that $q$ is true, then it follows that $p \implies q$ is also true. Such a proof is known as the \textit{trivial proof}.
+
+\subsubsection{Proof by Contradiction}
+We prove the statement $p$ is true when we prove that $\tilde{p}\rightarrow\left(r\land\tilde{r}\right)$, or $\tilde{p}\rightarrow\text{false}$.
+\begin{exercise}
+Prove $\sqrt{2}$ is irrational.
+\end{exercise}
+If $\sqrt{2}$ is rational, then
+\begin{equation}\label{eq:4}
+\sqrt{2}=\frac{m}{n}.
+\end{equation}
+where $m$, $n$ have no common factors. Squaring both sides, we get
+\begin{equation}\label{eq:5}
+2n^2=m^2,
+\end{equation}
+which implies
+\[
+m=2k.
+\]
+Thus,
+\begin{equation}
+m^2=4k^2
+\end{equation}
+However, from \ref{eq:5},
+\[
+n^2=\frac{1}{2}m^2=2k^2 \rightarrow n^2\text{ is odd}.
+\]
+Since both $m$ and $n$ are odd, they therefore have a common factor of $2$. We have proven that $\sqrt{2}$ is irrational by contradiction.
+
+\subsubsection{Proof by Induction}
+Suppose we have the statements $p_1,p_2p_3,...,p_n,n\in\mathbb{N}$. If we prove that $p_1$ is true (the basis for induction), then we assume $p_k$ is true. This is the induction hypothesis. We then show that $p_{k+!}$ is true, which proves that $p_n$ is true by induction.
+\end{document}
