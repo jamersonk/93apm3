@@ -285,5 +285,8 @@ n^2=\frac{1}{2}m^2=2k^2 \rightarrow n^2\text{ is odd}.
 Since both $m$ and $n$ are odd, they therefore have a common factor of $2$. We have proven that $\sqrt{2}$ is irrational by contradiction.
 
 \subsubsection{Proof by Induction}
-Suppose we have the statements $p_1,p_2p_3,...,p_n,n\in\mathbb{N}$. If we prove that $p_1$ is true (the basis for induction), then we assume $p_k$ is true. This is the induction hypothesis. We then show that $p_{k+!}$ is true, which proves that $p_n$ is true by induction.
+Consider the propositional function $P(n)$. Mathematical induction involves proving $P(n)$ is true by: (1) proving that $P(1)$, the \textit{basis of induction}, is true; (2) proving that for all positive integers $k$, if $P(k)$ is true, that $P(k+1)$ is true ($P(k) \rightarrow P(k+1)$) This is the \textit{induction hypothesis}.
+\begin{remark}
+Proof by Induction does not show that $P(k)$ is true. It only shows that if we assume that $P(k)$ is true, that $P(k+1)$ is also true.
+\end{remark}
 \end{document}

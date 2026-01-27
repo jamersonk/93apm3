@@ -1,0 +1,2 @@
+\contentsline {section}{\numberline {1}Vectors}{3}{section.1}%
+\contentsline {subsubsection}{\numberline {1.0.1}The Basics}{3}{subsubsection.1.0.1}%

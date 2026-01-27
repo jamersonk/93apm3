@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.5)  22 JAN 2026 15:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.6.5)  27 JAN 2026 09:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./apm3_discreteMaths.tex
-(apm3_discreteMaths.tex
+**./calculus.tex
+(calculus.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-29>
 (C:\Users\james\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -467,8 +467,8 @@ File: l3backend-pdftex.def 2025-04-14 L3 backend support: PDF output (pdfTeX)
 LaTeX Warning: Unused global option(s):
     [14pt].
 
-(apm3_discreteMaths.aux)
-\openout1 = `apm3_discreteMaths.aux'.
+(calculus.aux)
+\openout1 = `calculus.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
 LaTeX Font Info:    ... okay on input line 63.
@@ -549,9 +549,9 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring ON on input line 63.
-(apm3_discreteMaths.out) (apm3_discreteMaths.out)
+(calculus.out) (calculus.out)
 \@outlinefile=\write3
-\openout3 = `apm3_discreteMaths.out'.
+\openout3 = `calculus.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 66.
 
@@ -569,9 +569,9 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [1
 
 {C:/Users/james/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-(apm3_discreteMaths.toc)
+(calculus.toc)
 \tf@toc=\write4
-\openout4 = `apm3_discreteMaths.toc'.
+\openout4 = `calculus.toc'.
 
 
 
@@ -581,43 +581,40 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 [4]
 
-[5]
-
-[6]
-
-[7] (apm3_discreteMaths.aux)
+[5] (calculus.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-29>
  ***********
-Package rerunfilecheck Info: File `apm3_discreteMaths.out' has not changed.
-(rerunfilecheck)             Checksum: 446120FC4CF0950127E281F05D904DA9;2103.
+Package rerunfilecheck Info: File `calculus.out' has not changed.
+(rerunfilecheck)             Checksum: 7C6B2E48A29E65BAEF00F919C165D7A3;1138.
  ) 
 Here is how much of TeX's memory you used:
- 12274 strings out of 469923
- 190467 string characters out of 5469171
- 604271 words of memory out of 5000000
- 38891 multiletter control sequences out of 15000+600000
+ 12273 strings out of 469923
+ 190253 string characters out of 5469171
+ 599137 words of memory out of 5000000
+ 38889 multiletter control sequences out of 15000+600000
  635034 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,16n,79p,557b,575s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,16n,79p,547b,578s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/james/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb><C:/Users/james/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx12.pfb><C:/Users/james/AppData/Local/Programs/MiKTeX/fonts/type1/p
 ublic/amsfonts/cm/cmex10.pfb><C:/Users/james/AppData/Local/Programs/MiKTeX/font
 s/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/james/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/james/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/james/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/james/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/
-james/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
-C:/Users/james/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmt
-i10.pfb><C:/Users/james/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
-ts/symbols/msam7.pfb><C:/Users/james/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/symbols/msbm10.pfb>
-Output written on apm3_discreteMaths.pdf (7 pages, 182509 bytes).
+KTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/james/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/james/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/james/A
+ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users
+/james/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><
+C:/Users/james/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr
+7.pfb><C:/Users/james/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb><C:/Users/james/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmsy7.pfb><C:/Users/james/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmti10.pfb>
+Output written on calculus.pdf (5 pages, 181184 bytes).
 PDF statistics:
- 202 PDF objects out of 1000 (max. 8388607)
- 45 named destinations out of 1000 (max. 500000)
- 113 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 175 PDF objects out of 1000 (max. 8388607)
+ 46 named destinations out of 1000 (max. 500000)
+ 57 words of extra memory for PDF output out of 10000 (max. 10000000)
 

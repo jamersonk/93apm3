@@ -55,15 +55,15 @@
 \newcommand{\restrict}{\upharpoonright}
 \newcommand{\xor}{\oplus}
 
-\title{Introduction to Linear Algebra}
-\author{from 93APM3 Applied Mathematics 3}
-\date{AY25/26 Sem 2} % delete this line to display the current date
+\title{Vectors \& Matrices}
+\author{Accompaniment material for 93APM3 Applied Mathematics 3}
+\date{AY24/25 Sem 2} % delete this line to display the current date
 
 %%% BEGIN DOCUMENT
 \begin{document}
 
 \maketitle
-This set of notes is based on the lectures as delivered in AY25/26 by Dr Li Zhongqiang, with reference to \textit{Linear Algebra I} (Lun, 2006).
+This set of notes is based on the lectures as delivered in AY25/26 by Dr Chen Ming. It is intended as a brief revision prior to reading \textit{Introduction to Linear Algebra}.\\
 \newpage
 
 \tableofcontents
@@ -71,7 +71,43 @@ This set of notes is based on the lectures as delivered in AY25/26 by Dr Li Zhon
 \newpage
 
 
-\section{Matrices}
-\subsection{Basic Set Notation}
+\section{Vectors}
+\subsubsection{The Basics}
+\begin{definition}
+A vector $\vec{v}$ is a quantity with both direction and magnitude.
+\[
+\vec{v}=\left(v_x,v_y,v_z\right)
+\]
+\end{definition}
+\begin{definition}
+The column form of a vector $v$ is
+\[
+\vec{v}=  
+	\left[ {\begin{array}{c}
+    		v_x\\
+    		v_y\\
+    		v_z\\
+  	\end{array} } \right]
+\]
+\end{definition}
+\begin{definition}
+The magnitude of a vector $\vec{v}$ is given by
+\[
+|\vec{p}|=\sqrt{{v_x}^2+{v_y}^2+{v_z}^2}
+\]
+\end{definition}
+\begin{definition}
+The unit vector $\hat{v}$ of any vector $\vec{v}$ is
+\[
+\hat{v}=\frac{\vec{v}}{|\vec{v}|}
+\]
+\end{definition}
+\begin{definition}
+The \textbf{scalar product} or dot product of two vectors is
+\[
+\vec{a}\cot\vec{b}=|\vec{a}||\vec{b}|\cos{\theta}
+\]
+where $\theta$ is the angle between $\vec{a}$ and $\vec{b}$.
+\end{definition}
 
 \end{document}

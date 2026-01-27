@@ -1,0 +1,255 @@
+\documentclass[14pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{algpseudocode}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{color}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{titlesec}
+\usepackage{paralist}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{multirow}
+\titleformat{\section}[block]{\color{black}\Large\bfseries\filcenter}{}{1em}{}
+
+\geometry{
+    a4paper,
+    nomarginpar,
+    includeheadfoot,
+    total = {140mm, 257mm},
+    headheight = 1.2cm
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdfpagemode=FullScreen,
+    }
+
+    \theoremstyle{definition}
+    \newtheorem*{remark}{Remarks}
+    \newtheorem*{example}{Example}
+    \newtheorem*{discussion}{Discussion}
+    \newtheorem{definition}{Definition}[subsection]
+    \newtheorem{proposition}[definition]{Proposition}
+    \newtheorem{theorem}[definition]{Theorem}
+    \newtheorem{notation}[definition]{Notation}
+    \newtheorem{coro}[definition]{Corollary}
+    \newtheorem{lemma}[definition]{Lemma}
+    \newtheorem{axiom}[definition]{Axiom}
+    \newtheorem*{exercise}{Exercise}
+
+
+\newcommand{\impl}{\rightarrow}
+\newcommand{\eq}{\thicksim}
+\newcommand{\quotient}{A/\thicksim}
+\newcommand{\fun}[3]{#1\colon #2\rightarrow#3}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\restrict}{\upharpoonright}
+\newcommand{\xor}{\oplus}
+
+\title{Calculus}
+\author{based on the work of George B. Thomas Jr.}
+\date{AY25/26} % delete this line to display the current date
+
+%%% BEGIN DOCUMENT
+\begin{document}
+
+\maketitle
+
+This set of notes is adapted from \textit{Thomas' Calculus} by George B. Thomas Jr.
+\newpage
+
+\tableofcontents
+
+\newpage
+
+
+%%% SETS
+\section{Functions}
+\subsection{Functions \& Graphs}
+\begin{definition}
+A \textbf{function} $f$ form a domain set $D$ to a range set $Y$ is a rule that assigns a unique value $f(x)$ of $D$ for each element in $D$. 
+\end{definition}
+\begin{discussion}
+The domain $D$ is the set of possible input values. The range $Y$ is the set of possible output values. Each element in $D$ has a \textbf{single}, \textbf{unique} value $f(x)$.The graph of $f$ with domain $D$ is the set 
+\[
+\{(x,f(x)|x\in D\}.
+\]
+\end{discussion}
+\begin{axiom}
+A function $f$ can only have one value $f(x)$ for each $x$ in its domain. Any vertical line $x=a$ can only intersect $f$ once.
+\end{axiom}
+\begin{definition}
+A function $f$ is a \textbf{piecewise function} if it has separate definitions for different parts of its domain.
+\[ f(x)=\begin{cases}
+f_1 & x\leq0\\
+f_2 & x > 1
+\end{cases}
+\]
+\end{definition}
+\begin{definition}
+A function $y=f(x)$ is an
+\begin{align*}
+\text{even function if }	&f(-x)=f(x),\\
+\text{odd function if }	&f(-x)=-f(x),
+\end{align*}
+for every $x$ in the function's domain.
+\end{definition}
+\begin{definition}
+Two variables $x$, $y$ are \textbf{proportional} if they are always a constant multiple of one another, i.e. $y=kx$. If $1>k>-1$, $x$ and $y$ are said to be \textbf{inversely proportional}. 
+\end{definition}
+
+\subsection{Composite Functions}
+\begin{definition}
+The \textbf{composite function} is the function $f(g(x))$.
+\end{definition}
+\begin{remark}
+$x$ is the input for the function $g(x)$; $g(x)$ is then used as the input to $f$.
+\end{remark}
+\begin{definition}
+A graph is shifted vertically when we add $k$ to $f$.
+\[
+y=f(x)+k
+\]
+\end{definition}
+\begin{definition}
+A graph is shifted horizontally by $h$ when we add $h$ to $x$.
+\[
+y=f(x+h)
+\]
+\end{definition}
+
+
+\subsection{Trigonometric Functions}
+\begin{definition}
+The radian is defined as
+\begin{equation}
+s=r\theta,
+\end{equation}
+where $\theta$ is in radians.
+\end{definition}
+\begin{definition}
+The degree is defined as
+\begin{equation*}
+1^{\circ}=\frac{\pi}{180}rad.
+\end{equation*}
+\end{definition}
+\begin{definition}
+By convention, the positive angle is measured counter-clockwise from the positive $x$-axis.
+\end{definition}
+\begin{definition}
+The basic trigonometric functions are
+\begin{align*}
+\sin{\theta}&=\frac{opp}{hyp}	&\csc{\theta}&=\frac{hyp}{opp}=\frac{1}{\sin{\theta}} \\
+\cos{\theta}&=\frac{adj}{hyp}	&\sec{\theta}&=\frac{hyp}{adj}=\frac{1}{\cos{\theta}}\\
+\tan{\theta}&=\frac{opp}{adj}=\frac{\sin{\theta}}{\cos{\theta}} &\cot{\theta}&=\frac{adj}{opp}=\frac{1}{\tan{\theta}}=\frac{\cos{\theta}}{\sin{\theta}}
+\end{align*}
+\end{definition}
+
+\subsection{Trigonometric Identities}
+\begin{definition}
+The \textbf{Pythagorean identity} is
+\begin{equation}\label{eqn:trig_pyth}
+\sin^2{\theta}+\cos^2{\theta}=1
+\end{equation}
+\end{definition}
+\begin{remark}
+Dividing Eqs. (\ref{eqn:trig_pyth}) by $cos^2{\theta}$ and $\sin^2{\theta}$ gives
+\begin{align*}
+1+\tan^2\theta&=sec^2\theta\\
+1+\cot^2\theta&=\csc^2\theta
+\end{align*}
+\end{remark}
+\begin{definition}
+The \textbf{addition formulas} hold for al angles $A$ and $B$.
+\begin{equation}\label{eqn:trig_add}
+\begin{split}
+\cos{\left(A\pm B\right)}&=\cos{A}\cos{B}\mp\sin{A}\sin{B}\\
+\sin{\left(A\pm B\right)}&=\sin{A}\cos{B}\pm\cos{A}\sin{B}
+\end{split}
+\end{equation}
+\end{definition}
+\begin{remark}
+All other (basic) trigonometric identities derive from Eqs. (\ref{eqn:trig_pyth}) and Eqs. (\ref{eqn:trig_add}).
+\end{remark}
+\begin{definition}
+The \textbf{double-angle formulas} derive from substituting $\theta$ for $A$ and $B$ in Eqs (\ref{eqn:trig_add}) and give
+\begin{equation}
+\begin{split}
+\cos{2\theta}=\cos^2{\theta}-\sin^2{\theta}\\
+\sin{2\theta}=2\sin{\theta}\cos{\theta}.
+\end{split}
+\end{equation}
+\end{definition}
+\begin{definition}
+The \textbf{half-angle formulas} derive by combining
+\begin{equation*}
+\begin{split}
+\cos^2{\theta}+\sin^2{\theta}&=1\\
+\cos^2{\theta}-\sin^2{\theta}&=cos{2\theta}
+\end{split}
+\end{equation*}
+which give
+\begin{align}
+\cos^2\theta&=\frac{1+\cos{2\theta}}{2}\rightarrow \cos{\frac{\theta}{2}}	=\pm\sqrt{\frac{1+\cos{2\theta}}{2}} \\
+\sin^2\theta&=\frac{1-\cos{2\theta}}{2}\rightarrow \sin{\frac{\theta}{2}}=\pm\sqrt{\frac{1-\cos{2\theta}}{2}}
+\end{align}
+\end{definition}
+\begin{definition}
+The \textbf{Law of Cosines} (Cosine Law) is
+\begin{equation}
+c^2=a^2+b^2-2ab\cos{\theta}.
+\end{equation}
+\end{definition}
+
+
+\subsection{Exponential Functions}
+\begin{definition}
+The exponential function of base $a$ is
+\[
+f(x)=a^x,a>0.
+\]
+\end{definition}
+Where $f(x)=a^x$, the following rules apply:
+\begin{enumerate}
+	\item $a^x\times a^y=a^{x+y}$
+	\item $\frac{a^x}{a^y}=a^{x-y}$
+	\item ${\left(a^x\right)}^y={\left(a^y\right)}^x=a^{xy} $
+	\item $a^x\times b^x=\left(ab\right)^x$
+	\item $\frac{a^x}{b^x}=\left(\frac{a}{b}\right)^x$
+\end{enumerate}
+\begin{definition}
+The \textbf{euler's number} $e$ is defined as
+\begin{equation*}
+\begin{split}
+e	&=\lim_{x\to\infty}\left(\frac{n}{n+1}\right)^n\\
+	&= 1 + \frac{1}{1!}+\frac{1}{2!}+...+\frac{1}{n!}+...\\
+\end{split}
+\end{equation*}
+\end{definition}
+\begin{definition}
+The \textbf{natural exponential function} refers to the function
+\[
+f(x)=e^x
+\]
+\end{definition}
+\begin{definition}
+Given the function $y=y_0e^{kx}$,
+\begin{center}
+Exponential growth is when $k>0$, and\\
+Exponential decay is when $k<0$.
+\end{center}
+\end{definition}
+
+\subsection{Inverse Functions \& Logarithms}
+
+
+\end{document}
