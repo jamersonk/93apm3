@@ -55,23 +55,309 @@
 \newcommand{\restrict}{\upharpoonright}
 \newcommand{\xor}{\oplus}
 
-\title{Introduction to Linear Algebra}
-\author{from 93APM3 Applied Mathematics 3}
+\title{Linear Algebra}
+\author{based on the MIT 18.06 course.}
 \date{AY25/26 Sem 2} % delete this line to display the current date
 
 %%% BEGIN DOCUMENT
 \begin{document}
 
 \maketitle
-This set of notes is based on the lectures as delivered in AY25/26 by Dr Li Zhongqiang, with reference to \textit{Linear Algebra I} (Lun, 2006).
+This set of notes is based on the lectures as delivered in 2005 by Gilbert Strang and the MA1101R Linear Algebra I lecture notes by Ma Siu Lan and Victor Tan.
 \newpage
 
 \tableofcontents
 
 \newpage
 
-
 \section{Matrices}
-\subsection{Basic Set Notation}
+A matrix is a rectangular array of numbers.
+\subsection{Linear Systems}
+\begin{definition}
+A system of linear equations
+\begin{equation}\label{eq:1}
+\begin{split}
+a_1x+b_1y	&	=c_1\\
+a_2x+b_2y	&	=c_2\\
+\vdots\\
+a_nx+b_ny	&	=c_n\\
+\end{split}
+\end{equation}
+can be represented by matrices in the form
+\[
+AX=b
+\]
+where $A$ is the matrix of the coefficients, $X$ is the matrix of the directional vectors, and $b$ is a matrix of constants. Writing Eqs. (\ref{eq:1}) in this form we get
+\begin{equation}
+\left[\begin{array}{cc}
+a_1		& b_1\\
+a_2 		& b_2\\
+\vdots 	& \vdots\\
+a_n		& b_n
+\end{array}\right]\cdot\left[\begin{array}{c}
+x\\
+y
+\end{array}\right] = \left[\begin{array}{c}
+c_1\\
+c_2\\
+\vdots\\
+c_n
+\end{array}\right].
+\end{equation}
+\end{definition}
+\begin{definition}
+In the \textbf{column form} this is represented as
+\begin{equation}\label{eqn:col}
+x\left[\begin{array}{c}
+a_1\\
+a_2\\
+\vdots\\
+a_n
+\end{array}\right]+y\left[\begin{array}{c}
+b_1\\
+b_2\\
+\vdots\\
+b_n
+\end{array}\right]=\left[\begin{array}{c}
+c_1\\
+c_2\\
+\vdots\\
+c_n
+\end{array}\right]
+\end{equation}
+For $AX$, we say that $AX$ is a combination of the columns of $A$.
+\end{definition}
+\begin{remark}
+Any linear equation in the form $AX=b$ can be solved, given that the matrix $A$ is a non-singular (or invertible) matrix.
+\end{remark}
+\begin{definition}
+The \textbf{linear combination} refers to the combination of $x$ and $y$ which solves Eqs. (\ref{eqn:col}).
+\end{definition}
+\begin{definition}
+\textbf{Gaussian elimination} is an elimination algorithm. Multiples of the top row are subtracted from each lower row until the final matrix is that of an upper triangular matrix.
+\begin{equation}\label{eqn:gausElim}
+\left[\begin{array}{ccc}
+1 & 2 & 0\\
+3 & 9 & 2\\
+0 & 5 & 15
+\end{array}\right] \to \left[\begin{array}{ccc}
+1 & 2 & 0\\
+0 & 1 & 2\\
+0 & 5 & 15
+\end{array}\right] \to \left[\begin{array}{ccc}
+1 & 2 & 0\\
+0 & 1 & 2\\
+0 & 0 & 5
+\end{array}\right]
+\end{equation}
+The equations are then solved through \textbf{back substitution}.
+\end{definition}
+\begin{definition}
+The \textbf{pivot} of the matrix above is the terms $a_{11}$, $a_{22}$, and $a_{33}$ (with $a_{11}$ being the first pivot and so on). Where the pivot $\neq 0$. The product of the pivots of a matrix gives its \textit{determinant}.
+\end{definition}
+\begin{definition}
+\textbf{Elimination matrices} perform the elimination procedures in Gaussian Elimination. For example, for the processes in Eqs. \ref{eqn:gausElim}
+\begin{equation}\label{eq:gausElimMatrix}
+\begin{split}
+\left[\begin{array}{ccc}
+1	& 0	& 0\\
+-3	& 1	& 0\\
+0	& 0 & 1\\
+\end{array}\right]\left[\begin{array}{ccc}
+1	&	2	&	0\\
+3	&	9	&	2\\
+0	&	5	&	15\\
+\end{array}\right]&=\left[\begin{array}{ccc}
+1	&	2	&	0\\
+0	&	1	&	2\\
+0	&	5	&	15\\
+\end{array}\right]\\
+\left[\begin{array}{ccc}
+1	&	0	&	0\\
+0	&	1	&	0\\
+0	&	-5	&	1\\
+\end{array}\right]
+\left[\begin{array}{ccc}
+1	&	2	&	0\\
+0	&	1	&	2\\
+0	&	5	&	15\\
+\end{array}\right]&=
+\left[\begin{array}{ccc}
+1	&	2	&	0\\
+0	&	1	&	2\\
+0	&	0	&	5\\
+\end{array}\right]
+\end{split}
+\end{equation}
+\end{definition}
+\begin{discussion}
+Eqs. (\ref{eq:gausElimMatrix}) can be expressed as
+\[
+E_{32}\left(E_{21}A\right)=U
+\]
+which by the associative law is
+\[
+\left(E_{32}E_{21}\right)A=U
+\]
+where $E_{n}$ is an elimination matrix.
+\end{discussion}
+\subsection{Matrix Multiplication}
+It is given matrix $A$ (of size $n\times m$) and matrix $B$ (of size $m\times p$).
+\begin{definition}
+The size of the product matrix $AB$ is $n \times m$.
+\end{definition}
+\begin{definition}
+For the matrix $AB$, the element at row $j$ and column $k$ is
+\[
+\sum_{x=1}^na_{jx}b_{xk}
+\]
+\end{definition}
+\subsection{Inverses}
+\begin{definition}
+The \textbf{identity matrix} $I$ of a matrix $A$ is
+\begin{equation}
+\left[\begin{array}{cccc}
+1 & 0 & \cdots & 0\\
+0 & 1 & \cdots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & 1\\
+\end{array}\right].
+\end{equation}
+The size of $I$ is the same as that of $A$.
+\end{definition}
+\begin{definition}
+If the \textbf{inverse} $A^{-1}$ of the matrix $A$ exists, then it is the matrix which fulfils
+\begin{equation}
+AA^{-1}=I
+\end{equation}
+where $I$ is the identity matrix.
+\end{definition}
+\begin{remark}
+Such a matrix $A$ is a invertible/non-singular matrix.
+\end{remark}
+\begin{definition}
+The inverse $B^-1$ \textbf{does not} exist when
+\begin{equation*}
+\begin{split}
+\det B &= 0\text{, or}\\
+B\textbf{X}&=0\text{ is solvable.}\\
+\end{split}
+\end{equation*}
+\end{definition}
+\begin{remark}
+Such a matrix $B$ is a singular matrix. Its inverse does not exist.
+\end{remark}
+\begin{exercise}
+\textbf{Gauss-Jordan} is an algorithm to solve for $A^{-1}$ given $A$. Say we are given a matrix $A$, where
+\[
+A = \left[\begin{array}{cc}
+1 & 3\\
+2 & 7\\
+\end{array}\right]
+\]
+To start, we combine $A$ and $I$ into a single augmented matrix
+\[
+\left[\begin{array}{cc|cc}
+1 & 3 & 1 & 0\\
+2 & 7 & 0 & 1\\
+\end{array}\right]
+\]
+Perform elimination methods such that the matrix to the left of the vertical division is that of $I$; $A^{-1}$ would then be the matrix to the right of the vertical division.
+\[
+\left[\begin{array}{c|c}
+I & A^{-1}\\
+\end{array}\right]
+\]
+\end{exercise}
+\begin{definition}
+The inverse of the product of two matrices $AB$ is the matrix which fulfils
+\begin{equation}
+\begin{split}
+I &= \left(AB\right)\left(B^{-1}A^{-1}\right)\\
+\end{split}
+\end{equation}
+\end{definition}
+\begin{definition}
+The \textbf{transpose} $A^T$ of a matrix $A$ is the matrix where the rows and columns of $A$ have been swapped.
+\[
+A=\left[\begin{array}{ccc}
+a & b & c\\
+x & y & z\\
+\end{array}\right] \to A^T=\left[\begin{array}{cc}
+a & x\\
+b & y\\
+c & z\\
+\end{array}\right]
+\]
+We can write that for an element of the matrix $A_{ij}$,
+\[
+A_{ij}=A_{ji}^T
+\]
+\end{definition}
+\subsection{Elimination in the form A=LU}
+\begin{discussion}
+Given that no row exchanges occured, Eqs. (\ref{eq:gausElimMatrix}) was written in the form $EA=U$. It is preferable to write $EA=U$ in the form
+\[
+A = LU
+\]
+where $L=E^{-1}$.\\
+In the matrix $L$, if no row exchanges occurred, the multipliers go directly into $L$.
+\end{discussion}
+\subsubsection{With row exchanges}
+\begin{definition}
+The permutation matrix $P$ are identity matrices with reordered rows. $P$ is used to execute row exchanges.
+\end{definition}
+\begin{remark}
+For $P$, $P^{-1}=P^T$; for a $n\times n$ matrix, there are $n!$ permutations.
+\end{remark}
+\begin{discussion}Row exchanges become necessary when there is a 0 in the pivot spot. A row exchange with any row that has a non-zero digit in the pivot spot is necessary to perform elimination.
+\end{discussion}
+\begin{definition}
+With row exchanges, $A=LU$ is written in the form
+\[
+PA=LU
+\]
+where $P$ are permutation matrices.
+\end{definition}
+\newpage
+\section{Vector Spaces}
+\subsection{Vector Spaces \& Subspaces}
+\begin{definition}
+The \textbf{vector space} is a space of vectors. In a \textit{real} vector space, the operations of scalar multiplication and vector addition must be closed (ie. remain within the vector space).
+\end{definition}
+\begin{remark}
+Real vector spaces must satisfy 8 conditions.
+\begin{enumerate}
+	\item $x+y=y+x$,
+	\item $x+(y+z)=(x+y)+z$,
+	\item there is a "zero vector" such that $x+0=x$,
+	\item for each $x$ there is a unique vector $-x$ such that $x+(-x)=0$,
+	\item $1\times x=x$,
+	\item $\left(c_1c_2\right)x=c_1\left(c_2x\right)$,
+	\item $c\left(x+y\right)=cx+cy$, and
+	\item $\left(c_1+c_2\right)x=c_1x+c_2x$.
+\end{enumerate}
+These conditions are necessary to permit scalar multiplication and vector addition.
+\end{remark}
+\begin{exercise}
+Some examples of vector spaces are:
+\begin{itemize}
+	\item $\mathbb{R}^2$ is the vector space of all 2-D real vectors.
+	\item $\mathbb{R}^3$ is the vector space of all 3-D real vectors.
+	\item In general, any space $\mathbb{R}^n$ is a vector space of all n-dimensional real vectors.
+\end{itemize}
+\end{exercise}
+\begin{definition}
+A \textbf{subspace} is a vector space within another vector space.
+\end{definition}
+\begin{exercise}
+Some examples of vector subspaces in the vector space $\mathbb{R^2}$
+\begin{itemize}
+	\item all of $\mathbb{R^2}$,
+	\item any line through $\left(0,0\right)$ in $\mathbb{R^2}$, and
+	\item the zero vector alone.
+\end{itemize}
+\end{exercise}
+
 
 \end{document}
