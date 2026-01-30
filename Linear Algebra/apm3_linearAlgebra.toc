@@ -6,3 +6,4 @@
 \contentsline {subsubsection}{\numberline {1.4.1}With row exchanges}{6}{subsubsection.1.4.1}%
 \contentsline {section}{\numberline {2}Vector Spaces}{7}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Vector Spaces \& Subspaces}{7}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Columnspace \& Nullspace}{8}{subsubsection.2.1.1}%

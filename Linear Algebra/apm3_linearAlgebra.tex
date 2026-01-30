@@ -323,7 +323,13 @@ where $P$ are permutation matrices.
 \section{Vector Spaces}
 \subsection{Vector Spaces \& Subspaces}
 \begin{definition}
-The \textbf{vector space} is a space of vectors. In a \textit{real} vector space, the operations of scalar multiplication and vector addition must be closed (ie. remain within the vector space).
+The \textbf{vector space} is a space of vectors. In a \textit{real} vector space, the basic operations
+\begin{itemize}
+	\item $v+w$,
+	\item $cw$, and
+	\item any such linear combination (i.e. $cv+dw$).
+\end{itemize}
+remain closed (in the space).
 \end{definition}
 \begin{remark}
 Real vector spaces must satisfy 8 conditions.
@@ -358,6 +364,16 @@ Some examples of vector subspaces in the vector space $\mathbb{R^2}$
 	\item the zero vector alone.
 \end{itemize}
 \end{exercise}
+\subsubsection{Columnspace \& Nullspace}
+\begin{definition}
+The \textbf{columnspace} $C\left(A\right)$ is the subspace of $\mathbb{R}^n$ which contains all the linear combinations of the columns of $A$. 
+\end{definition}
+\begin{remark}
+When the number of equations $m$ $>$ the number of unknowns $n$, then $A\textbf{x}=b$ does not always have a solution. $Ax=b$ only has a subspace when $b$ is in the column space of $A$.
+\end{remark}
+\begin{definition}
+The \textbf{nullspace} $N\left(A\right)$ is the subspace of $\mathbb{R}^n$ which contains all the solutions to the $\textbf{x}$ such that $A\textbf{x}=0$.
+\end{definition}
 
 
 \end{document}
