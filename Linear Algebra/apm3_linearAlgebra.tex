@@ -56,14 +56,14 @@
 \newcommand{\xor}{\oplus}
 
 \title{Linear Algebra}
-\author{based on the MIT 18.06 course.}
+\author{for 93APM3 Applied Mathematics 3}
 \date{AY25/26 Sem 2} % delete this line to display the current date
 
 %%% BEGIN DOCUMENT
 \begin{document}
 
 \maketitle
-This set of notes is based on the lectures as delivered in 2005 by Gilbert Strang and the MA1101R Linear Algebra I lecture notes by Ma Siu Lan and Victor Tan.
+This set of notes is based on \textit{Linear Algebra with Applications} by Steven J. Leon.
 \newpage
 
 \tableofcontents
@@ -74,7 +74,7 @@ This set of notes is based on the lectures as delivered in 2005 by Gilbert Stran
 A matrix is a rectangular array of numbers.
 \subsection{Linear Systems}
 \begin{definition}
-A system of linear equations
+A system of linear equations ("the System")
 \begin{equation}\label{eq:1}
 \begin{split}
 a_1x+b_1y	&	=c_1\\
@@ -104,6 +104,9 @@ c_2\\
 c_n
 \end{array}\right].
 \end{equation}
+\begin{remark}
+The matrix $A$ is the \textit{coefficient matrix} of the system.
+\end{remark}
 \end{definition}
 \begin{definition}
 In the \textbf{column form} this is represented as
@@ -134,29 +137,67 @@ Any linear equation in the form $AX=b$ can be solved, given that the matrix $A$ 
 The \textbf{linear combination} refers to the combination of $x$ and $y$ which solves Eqs. (\ref{eqn:col}).
 \end{definition}
 \begin{definition}
-\textbf{Gaussian elimination} is an elimination algorithm. Multiples of the top row are subtracted from each lower row until the final matrix is that of an upper triangular matrix.
-\begin{equation}\label{eqn:gausElim}
-\left[\begin{array}{ccc}
-1 & 2 & 0\\
-3 & 9 & 2\\
-0 & 5 & 15
-\end{array}\right] \to \left[\begin{array}{ccc}
-1 & 2 & 0\\
-0 & 1 & 2\\
-0 & 5 & 15
-\end{array}\right] \to \left[\begin{array}{ccc}
-1 & 2 & 0\\
-0 & 1 & 2\\
-0 & 0 & 5
+The \textbf{augmented matrix} $M_ag$ is the matrix in the form
+\[
+\left[\begin{array}{c|c}
+A	&	b
 \end{array}\right]
-\end{equation}
-The equations are then solved through \textbf{back substitution}.
+\]
+The system of linear equations can be solved by performing \textit{row operations} on the augmented matrix.
 \end{definition}
 \begin{definition}
-The \textbf{pivot} of the matrix above is the terms $a_{11}$, $a_{22}$, and $a_{33}$ (with $a_{11}$ being the first pivot and so on). Where the pivot $\neq 0$. The product of the pivots of a matrix gives its \textit{determinant}.
+The \textbf{elementary row operations} are
+\begin{enumerate}
+\item interchange two rows,
+\item multiply a row by a non-zero real number, and
+\item replace a row by its sum with a multiple of another row.
+\end{enumerate}
+Elementary row operations are performed on the matrix until the matrix is reduced to the \textit{row echelon form}.
 \end{definition}
+
 \begin{definition}
-\textbf{Elimination matrices} perform the elimination procedures in Gaussian Elimination. For example, for the processes in Eqs. \ref{eqn:gausElim}
+A matrix $A$ is in \textbf{row echelon form} if
+\begin{enumerate}
+\item the first non-zero entry in each non-zero row is 1,
+\item row $k$ does not consist entirely of zeros, then the number of leading zeros in row $k+1$ is greater than that in row $k$, and
+\item rows whose entries are all zero are below the rows having non-zero entries.
+\end{enumerate}
+For example,
+\[
+\left[\begin{array}{ccc}
+1	&	2	&	3\\
+0	&	0	&	1\\
+0	&	0	&	0
+\end{array}\right].
+\]
+\end{definition}
+
+\begin{definition}
+\textbf{Gaussian elimination} is the process of utilising the elementary row operations to bring a matrix into its row echelon form.
+\end{definition}
+
+\begin{definition}
+$A$ is said to be in \textbf{reduced row echelon form} if
+\begin{enumerate}
+\item $A$ is in row echelon form, and
+\item the first non-zero entry in each row is the only non-zero entry in its column.
+\end{enumerate}
+For example,
+\[
+\left[\begin{array}{cccc}
+1	&	0	&	0	&	3\\
+0	&	1	&	0	&	2\\
+0	&	0	&	1	&	1
+\end{array}\right].
+\]
+\end{definition}
+
+\begin{definition}
+\textbf{Gauss-Jordan reduction} is the process of utilising elementary row operations to bring a matrix to its reduced row echelon form.
+\end{definition}
+
+\begin{definition}
+\textbf{Elementary matrices} $E$ perform the elimination procedures in Gaussian Elimination. For example,
 \begin{equation}\label{eq:gausElimMatrix}
 \begin{split}
 \left[\begin{array}{ccc}
@@ -189,18 +230,18 @@ The \textbf{pivot} of the matrix above is the terms $a_{11}$, $a_{22}$, and $a_{
 \end{array}\right]
 \end{split}
 \end{equation}
+This can be expressed as
+\[
+B=E_2E_1A
+\]
 \end{definition}
-\begin{discussion}
-Eqs. (\ref{eq:gausElimMatrix}) can be expressed as
+\begin{definition}
+The matrix $B$ is the \textbf{row equivalent} of $A$ when there exists a finite sequence of elementary matrices $E_n,E_{n-1},\cdots,E_1$ such that
 \[
-E_{32}\left(E_{21}A\right)=U
+B=E_nE_{n-1}\cdots E_1A
 \]
-which by the associative law is
-\[
-\left(E_{32}E_{21}\right)A=U
-\]
-where $E_{n}$ is an elimination matrix.
-\end{discussion}
+\end{definition}
+
 \subsection{Matrix Multiplication}
 It is given matrix $A$ (of size $n\times m$) and matrix $B$ (of size $m\times p$).
 \begin{definition}
@@ -212,6 +253,7 @@ For the matrix $AB$, the element at row $j$ and column $k$ is
 \sum_{x=1}^na_{jx}b_{xk}
 \]
 \end{definition}
+
 \subsection{Inverses}
 \begin{definition}
 The \textbf{identity matrix} $I$ of a matrix $A$ is
@@ -248,7 +290,7 @@ B\textbf{X}&=0\text{ is solvable.}\\
 Such a matrix $B$ is a singular matrix. Its inverse does not exist.
 \end{remark}
 \begin{exercise}
-\textbf{Gauss-Jordan} is an algorithm to solve for $A^{-1}$ given $A$. Say we are given a matrix $A$, where
+We use \textbf{Gauss-Jordan elimination} to solve for $A^{-1}$ given $A$. Say we are given a matrix $A$, where
 \[
 A = \left[\begin{array}{cc}
 1 & 3\\
@@ -320,14 +362,17 @@ PA=LU
 where $P$ are permutation matrices.
 \end{definition}
 \newpage
+
+
+%%% VECTOR SPACES %%%
 \section{Vector Spaces}
-\subsection{Vector Spaces \& Subspaces}
+\subsection{Vector Spaces}
 \begin{definition}
 The \textbf{vector space} is a space of vectors. In a \textit{real} vector space, the basic operations
 \begin{itemize}
 	\item $v+w$,
 	\item $cw$, and
-	\item any such linear combination (i.e. $cv+dw$).
+	\item any such linear combination (i.e. $cv+dw$) of these operations.
 \end{itemize}
 remain closed (in the space).
 \end{definition}
@@ -353,9 +398,17 @@ Some examples of vector spaces are:
 	\item In general, any space $\mathbb{R}^n$ is a vector space of all n-dimensional real vectors.
 \end{itemize}
 \end{exercise}
+
+%%% SUBSPACES %%%
+\subsection{Subspaces}
 \begin{definition}
-A \textbf{subspace} is a vector space within another vector space.
+A \textbf{subspace} $S$ is a vector space within another vector space. $S$ must be a non-empty subset of $V$, and must satisfy:
+\begin{enumerate}
+\item $\alpha\textbf{x}\in S$ for $\textbf{x}\in S$ for any scalar $\alpha$, and
+\item $\textbf{x}+\textbf{y}\in S$ whenever $\textbf{x},\textbf{y}\in S$.
+\end{enumerate}
 \end{definition}
+
 \begin{exercise}
 Some examples of vector subspaces in the vector space $\mathbb{R^2}$
 \begin{itemize}
@@ -364,16 +417,214 @@ Some examples of vector subspaces in the vector space $\mathbb{R^2}$
 	\item the zero vector alone.
 \end{itemize}
 \end{exercise}
-\subsubsection{Columnspace \& Nullspace}
+
 \begin{definition}
-The \textbf{columnspace} $C\left(A\right)$ is the subspace of $\mathbb{R}^n$ which contains all the linear combinations of the columns of $A$. 
+The \textbf{Nullspace} $N\left(A\right)$ of the space $A$ is the set of all solutions of the homogeneous system $A\textbf{x}=\textbf{0}$.
+\[
+N\left(A\right) = \{ x\in A|A\textbf{x}=\textbf{0} \}
+\]
+\end{definition}
+
+\begin{definition}
+The \textbf{linear combination} of the vectors $v_1,v_2,\cdots,v_n$, which are vectors in a vector space $V$ is the sum of these vectors in the form
+\begin{equation}\label{eq:linCombi}
+\alpha_1v_1+\alpha_2v_2+\cdots \alpha_nv_n
+\end{equation}
+\end{definition}
+\begin{definition}
+The \textbf{span} is the set of all linear combinations of $v_1,v_2,\cdots,v_n$ and is denoted by $\text{Span}\{v_1,\cdots,v_n\}$.\\
+\\
+The set $\{v_1,\cdots v_n\}$ is a \textbf{spanning set} for $V$ is and only if every vector in $V$ can be written as a linear combination of $v_1,v_2,\cdots v_n$.
+\end{definition}
+
+\subsection{Linear Independence}
+\begin{definition}
+The vectors $v_1,v_2,\cdots,v_n$ in a vector space $V$ are \textbf{linearly independent} if
+\[
+c_1v_1+c_2v_2+\cdots+c_nv_n=0
+\]
+implies that $c_1,c_2,\cdots,c_n$ must be 0.
+\end{definition}
+\begin{definition}
+The vectors $v_1,v_2,\cdots,v_n$ in a vector space $V$ are \textbf{linearly dependent} if there exists scalars such that
+\[
+c_1v_1+c_2v_2+\cdots+c_nv_n=0
+\]
+\end{definition}
+\subsection{Basis \& Dimension}
+\begin{definition}
+The \textbf{basis} of a vector is formed by the set of vectors $\{v_1\cdots v_n\}$ if and only if
+\begin{enumerate}
+\item $v_1,\cdots,v_n$ are linearly independent, and
+\item $v_1,\cdots,v_n$ set spans $V$.
+\end{enumerate}
+A vector space can have one or more vector bases.
+\end{definition}
+\begin{definition}
+If the basis of $V$ has $n$ elements, then $V$ is said to be of $n$-dimensions. If there exists a finite set of vectors that span $V$, then $V$ is said to be finite dimensional; $V$ is otherwise infinitely dimensional.
+\end{definition}
+
+\subsection{Row and Column Space}
+\begin{definition}
+The \textbf{row space} $R\left(A\right)$ is the subspace of $\mathbb{R}^n$ which contains all the linear combinations of the rows of the matrix $A$.
+\[
+\text{Row}\left(A\right)=R\left(A\right)=\text{Lin}\{r_1,r_2,\cdots,r_n\}
+\]
+where $r_1,r_2,\cdots,r_n$ are the rows of $A$.
+\end{definition}
+\begin{definition}
+The \textbf{rank} of $A$
+\[
+\text{rank}\left(A\right)
+\]
+is the dimension of the row space of $A$.
+\end{definition}
+
+\begin{definition}
+The \textbf{column space} $C\left(A\right)$ is the subspace of $\mathbb{R}^n$ which contains all the linear combinations of the columns of the matrix $A$.
+\[
+\text{Col}\left(A\right)=C\left(A\right)=\text{Lin}\{c_1,c_2,\cdots,c_n\}
+\]
+where $c_1,c_2,\cdots,c_n$ are the columns of $A$.
+\end{definition}
+
+\subsection{Eigenvalues and Eigenvectors}
+Given that $A$ is a square matrix of size $n\times n$. If there exists a \textbf{non-zero vector} $x$ such that 
+\[
+Ax=\lambda x,
+\]
+then
+\begin{definition}
+the scalar $\lambda$ is a \textbf{eigenvalue} or \textbf{characteristic value} of $A$, and
+\end{definition}
+\begin{definition}
+the vector $x$ is an \textbf{eigenvector} or \textbf{characteristic vector} of $\lambda$.
+\end{definition}
+\begin{discussion}
+The eigenvalues $\lambda$ and eigenvalues $x$ of $A$ can be determined by
+\begin{enumerate}
+\item solving the characteristic equation $\text{det}\left(A-\lambda I\right)=0$ which determines the eigenvalues $\lambda$, and then
+\item for each of the eigenvalues $\lambda$, solve the homogenous system $\left(A-\lambda I\right)v=0$ which determines the corresponding eigenvector(s).  
+\end{enumerate}
+\end{discussion}
+\begin{theorem}
+The product of the eigenvalues $\lambda_n$ of $A$ gives the determinant of $A$.
+\[
+\Pi^n_{i=1}\left(\lambda_n\right)=\text{det}\left(A\right)
+\]
+\end{theorem}
+\begin{theorem}
+For the eigenvectors $\lambda_n$ and $\lambda_m$ to be linearly independent, they must correspond to different eigenvalues $x_n$ and $x_m$.
+\end{theorem}
+\subsubsection{Similar Matrices}
+\begin{definition}
+The matrices $A$ and $B$ are said to be \textbf{similar matrices} if there exists a non-singular matrix $S$ such that
+\[
+B=S^{-1}AS
+\]
+\end{definition}
+\begin{theorem}
+If two matrices $A$ and $B$ are similar, then $A$ and $B$ have the same characteristic equation and hence the same eigenvalues.
+\end{theorem}
+
+\subsection{Diagonalisation}
+\begin{definition}
+The $n\times n$ matrix $A$ is said to be \textbf{diagonalisable} if there exists a non-singular matrix $X$ and diagonal matrix $D$ such that
+\[
+X^-1AX=D
+\]
+then $X$ diagonalises $A$.
 \end{definition}
 \begin{remark}
-When the number of equations $m$ $>$ the number of unknowns $n$, then $A\textbf{x}=b$ does not always have a solution. $Ax=b$ only has a subspace when $b$ is in the column space of $A$.
+For $A$ to be diagonalisable, $A$ must have $n$ linearly independent eigenvectors, which must correspond to distinct eigenvalues. If $A$ is diagonalisable, then
+\begin{enumerate}
+\item the column vectors of $X$ correspond to the eigenvectors $x$ of $A$,
+\[
+X=\left[\begin{array}{cccc}
+x_1	&	x_2	&	\cdots &	x_n
+\end{array}\right]
+\]
+\item the diagonal elements of $D$ correspond to the eigenvalues of $A$.
+\[
+D=\left[\begin{array}{cccc}
+\lambda_1	&			&			&\\
+			&\lambda_2	&			&\\
+			&			&\ddots		&\\
+			&			&			&\lambda_n
+\end{array}\right]
+\]
+\end{enumerate}
+\textbf{The square matrix is diagonalisable if it has $n$ linearly independent eigenvalues. It does not need to have $n$ distinct eigenvectors.}
+\end{remark}
+\begin{exercise} \textbf{Powers of matrices}\\
+If $A$ is diagonalizable, then $A$ can be factored into the form $XDX^{-1}$. Therefore,
+\[
+A^k=XD^kX^{-1}=X\left[\begin{array}{cccc}
+\left(\lambda_1\right)^k	&							&			&\\
+							&\left(\lambda_2\right)^k	&			&\\
+							&							&\ddots		&\\
+							&							&			&\left(\lambda_n\right)^k
+\end{array}\right]X^{-1}
+\]
+
+\end{exercise}
+
+\subsection{Systems of Linear Differential Equations}
+\begin{definition}
+A system of differential equations (of the first degree)
+\begin{equation}
+\begin{split}
+{y'}_1	&=	a_{11}y_1+a_{12}y_2+\cdots+a_{1n}y_n\\
+{y'}_2	&=	a_{21}y_1+a_{22}y_2+\cdots+a_{2n}y_n\\
+\vdots\\
+{y'}_n	&=	a_{n1}y_1+a_{n2}y_2+\cdots+a_{nn}y_n
+\end{split}
+\end{equation}
+and can be represented in the matrix form
+\begin{equation}
+\textbf{y}'=A\textbf{y}
+\end{equation}
+\end{definition}
+\begin{remark}
+Any equation in the form
+\[
+\frac{dy}{dx}=kx
+\]
+can be solved with the general solution
+\[
+x=Ae^{kt},A\in\mathbb{R}
+\]
+Thus, for the case $n>1$,
+\[
+\textbf{Y}=\left[\begin{array}{c}
+x_1e^{\lambda t}\\
+x_2e^{\lambda t}\\
+\vdots\\
+x_ne^{\lambda t}
+\end{array}\right]
+=e^{\lambda t}\textbf{x}
+\]
 \end{remark}
 \begin{definition}
-The \textbf{nullspace} $N\left(A\right)$ is the subspace of $\mathbb{R}^n$ which contains all the solutions to the $\textbf{x}$ such that $A\textbf{x}=0$.
+The \textbf{initial value problem} is any problem of the form
+\[
+\begin{split}
+\textbf{Y}'&=A\textbf{Y}\\
+\textbf{Y}\left(0\right)&=\textbf{Y}_0
+\end{split}.
+\]
+Any such problem in the form will have a unique solution.
 \end{definition}
+
+
+
+
+
+
+
+
+
+
 
 
 \end{document}
